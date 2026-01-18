@@ -275,7 +275,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
                     <a href="#" onclick="sharePageToX(event, 'downloads')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
                     <a href="#" onclick="sharePageToFacebook(event, 'downloads')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" onclick="sharePageToInstagram(event, 'downloads')" class="page-share-icon"><i class="fab fa-instagram"></i></a>
                     <a href="#" onclick="sharePageToWhatsApp(event, 'downloads')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
                     <a href="#" onclick="copyPageLink(event, 'downloads')" class="page-share-icon"><i class="fas fa-link"></i></a>
                 </div>
@@ -321,7 +320,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
                     <a href="#" onclick="sharePageToX(event, 'culture')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
                     <a href="#" onclick="sharePageToFacebook(event, 'culture')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" onclick="sharePageToInstagram(event, 'culture')" class="page-share-icon"><i class="fab fa-instagram"></i></a>
                     <a href="#" onclick="sharePageToWhatsApp(event, 'culture')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
                     <a href="#" onclick="copyPageLink(event, 'culture')" class="page-share-icon"><i class="fas fa-link"></i></a>
                 </div>
@@ -624,14 +622,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
         }
 
-        function sharePageToInstagram(e, page) {
-            e.preventDefault();
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                alert("Link copied! You can now paste it in Instagram.");
-            });
-        }
-
         function sharePageToWhatsApp(e, page) {
             e.preventDefault();
             const text = `Check out the ${page} page on Alwzsoft: ${window.location.href}`;
@@ -642,7 +632,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             e.preventDefault();
             const url = window.location.href;
             navigator.clipboard.writeText(url).then(() => {
-                alert("Link copied to clipboard!");
+                alert("Link copied! Share it on Instagram or anywhere else.");
             });
         }
     </script>
