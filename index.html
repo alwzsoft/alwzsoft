@@ -25,6 +25,7 @@
     <meta name="description" content="Discover everything about Korea! From street food like Bungeoppang to cultural tips on honorifics and the latest trends. Download our apps for real-time Korean market data and currency conversion.">
     <meta name="keywords" content="Korea, Korean Food, K-Culture, Seoul Travel, Makgeolli, Pajeon, Korean Trends, Korean Apps, K-Pulse, Won-Calc, K-Time Hub">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -218,6 +219,26 @@
             color: white;
             margin-top: 40px;
         }
+
+        .page-share-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            background: #f4f4f4;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 5px;
+            transition: 0.3s;
+        }
+        .page-share-icon:hover {
+            background: #333;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -250,6 +271,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="downloads-content" style="display:none;">
             <section class="section">
                 <h2>Downloads</h2>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
+                    <a href="#" onclick="sharePageToX(event, 'downloads')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" onclick="sharePageToFacebook(event, 'downloads')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" onclick="sharePageToInstagram(event, 'downloads')" class="page-share-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" onclick="sharePageToWhatsApp(event, 'downloads')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" onclick="copyPageLink(event, 'downloads')" class="page-share-icon"><i class="fas fa-link"></i></a>
+                </div>
                 <div class="features">
                     <div class="feature-card">
                         <h3>K-Pulse by Alwzsoft</h3>
@@ -261,7 +290,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <li>No installation required</li>
                         </ul>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" id="won-calc">
                         <h3>Won-Calc by Alwzsoft</h3>
                         <p>Convert USD to KRW using real-time exchange rates and see how many bowls of Gukbap you can buy!</p>
                         <a href="dist/won-calc.exe" download class="btn">Download</a>
@@ -271,7 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <li>No installation required</li>
                         </ul>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" id="k-time-hub">
                         <h3>K-Time Hub by Alwzsoft</h3>
                         <p>Korean business clock showing Seoul time, market status, and holiday countdowns for global collaboration.</p>
                         <a href="dist/k-time-hub.exe" download class="btn">Download</a>
@@ -288,6 +317,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="culture-content">
             <section class="section">
                 <h2>Korean Culture</h2>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
+                    <a href="#" onclick="sharePageToX(event, 'culture')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" onclick="sharePageToFacebook(event, 'culture')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" onclick="sharePageToInstagram(event, 'culture')" class="page-share-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" onclick="sharePageToWhatsApp(event, 'culture')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" onclick="copyPageLink(event, 'culture')" class="page-share-icon"><i class="fas fa-link"></i></a>
+                </div>
                 <p>Discover the rich culture of Korea through its traditions, food, and modern influences.</p>
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
@@ -315,6 +352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>A renowned chef famous for his deep expertise in Japanese-style braising. Recently viral for his unique, humble personality and 'memorable' quotes on cooking shows. His meticulous approach to ingredients makes him one of the most respected chefs in Korea.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="food">
                         <h3>파전 Pa-jeon</h3>
                         <img src="images/pajeon.jpg" alt="Korean Savory Pancake" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -323,6 +361,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>A crispy, savory pancake loaded with fresh green onions (Pa). The most popular version is 'Haemul Pajeon,' packed with various seafood. In Korea, it's a tradition to enjoy hot Pajeon with Makgeolli whenever it rains!</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="food">
                         <h3>막걸리 Mak-geol-li</h3>
                         <img src="images/makgeolli.jpg" alt="Korean Rice Wine" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -331,6 +370,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>A refreshing, milky rice wine with a hint of sweetness and carbonation. Traditionally enjoyed in brass bowls on rainy days with savory pancakes (Pajeon), it's now trending with modern fruit flavors like peach and chestnut!</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="culture">
                         <h3>눈오리 Nun-o-ri</h3>
                         <img src="images/snowduck.jpg" alt="Korean Snow Duck Maker" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -339,6 +379,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>More than just ducks! These popular Korean snow makers now come in various adorable shapes like hearts, stars, and penguins. Join the K-Pop idols and locals in making your own cute snow army for fun social media photos!</p>
                         <p class="post-date">1/19/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="culture">
                         <h3>존댓말 Jon-daet-mal</h3>
                         <img src="images/honorifics.jpg" alt="Korean Honorifics Culture" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -347,6 +388,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>Beyond simple politeness, 'Jondaetmal' is a complex system of honorifics embedded in Korean language. It reflects social hierarchy based on age and status, showing respect to elders and superiors through specific verb endings and vocabulary.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="culture">
                         <h3>태극기 Tae-geuk-gi</h3>
                         <img src="images/flag.jpg" alt="National Flag of South Korea" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -355,6 +397,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>The Korean flag symbolizes the harmony of the universe. The white background represents peace, the red and blue circle signifies balance(Yin and Yang), and the four black trigrams represent sky, earth, water, and fire.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="culture">
                         <h3>이재명 Lee Jae-myung</h3>
                         <img src="images/president.jpeg" alt="Lee Jae-myung, President of South Korea" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -372,6 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>Meet the world's most popular spirit! Often called 'Korean Vodka,' this clear liquor in an iconic green bottle is best enjoyed chilled with friends. Experience the 'Somaek' culture or try sweet fruit flavors like peach and grape.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="food">
                         <h3>감자탕 Gamja-tang</h3>
                         <img src="images/gamjatang.jpg" alt="Pork Backbone Stew with Potatoes" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -380,6 +424,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>Don't let the name fool you—while 'Gamja' means potato, the star of this dish is the tender pork backbones! Enjoy the deep, spicy broth with perilla seeds, and don't forget the mandatory 'Bokkeumbap' (fried rice) at the end.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="food">
                         <h3>국밥 Guk-bap</h3>
                         <img src="images/gukbab.jpg" alt="Korean Hot Soup with Rice" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -388,6 +433,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>A warm bowl of soup that reflects regional pride! From Busan's famous 'Dwaeji-gukbap' (Pork Rice Soup) to the savory 'Sundae-gukbap' (Blood Sausage Soup) found nationwide, each city offers a unique broth and experience.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="shopping">
                         <h3>올리브영 Ol-live-young</h3>
                         <img src="images/oliveyoung.png" alt="Olive Young Korea" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -396,6 +442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>The ultimate destination for K-beauty lovers! From viral sunscreens to soothing mask packs, you can test and buy all the trending skincare and makeup products that Korean celebrities actually use.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="shopping">
                         <h3>다이소 Dai-so</h3>
                         <img src="images/daiso.png" alt="Daiso Korea" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -404,6 +451,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>A paradise of high-quality items at incredibly low prices (usually $1~$5). From trendy K-beauty products to unique Korean stationery, it's the best place to find practical souvenirs for your friends!</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="shopping">
                         <h3>편의점 Pyeon-ui-jeom</h3>
                         <img src="images/cvs.png" alt="K-Convenience Store" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -412,6 +460,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>It's a life-saver! Beyond food, you can find emergency medicines, send parcels, charge your phone, and buy daily essentials like umbrellas or shirts anytime, anywhere in Korea.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="food">
                         <h3>붕어빵 Bungeo-ppang</h3>
                         <img src="images/bungeoppang.jpg" alt="Korean Fish-shaped Pastry" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -420,6 +469,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <p>A nostalgic winter treat! These fish-shaped waffles are crispy on the outside and filled with warm sweetness. In Korea, we even have a term 'Bungeo-se-kwon' for areas lucky enough to have a street stall nearby.</p>
                         <p class="post-date">1/18/2026</p>
                     </div>
+
                     <div class="feature-card" data-category="food">
                         <h3>두바이 쫀득 쿠키 Du-jjon-ku</h3>
                         <img src="images/dubai_cookie.png" alt="Dubai Chewy Cookies" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
@@ -430,8 +480,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                 </div>
             </section>
-
-
         </div>
 
 
@@ -560,6 +608,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 });
             });
         });
+
+
+
+        function sharePageToX(e, page) {
+            e.preventDefault();
+            const text = `Check out the ${page} page on Alwzsoft!`;
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function sharePageToFacebook(e, page) {
+            e.preventDefault();
+            const url = window.location.href;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        }
+
+        function sharePageToInstagram(e, page) {
+            e.preventDefault();
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert("Link copied! You can now paste it in Instagram.");
+            });
+        }
+
+        function sharePageToWhatsApp(e, page) {
+            e.preventDefault();
+            const text = `Check out the ${page} page on Alwzsoft: ${window.location.href}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function copyPageLink(e, page) {
+            e.preventDefault();
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert("Link copied to clipboard!");
+            });
+        }
     </script>
 </body>
 </html>
