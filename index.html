@@ -123,6 +123,7 @@
         <a href="#culture" onclick="showSection('culture')">Culture</a>
         <a href="#downloads" onclick="showSection('downloads')">Downloads</a>
         <a href="#about" onclick="showSection('about')">About</a>
+        <a href="#history" onclick="showSection('history')">History</a>
     </nav>
 
     <div class="container">
@@ -131,7 +132,7 @@
                 <img src="logo.jpg" alt="ALWZSOFT Logo" style="max-width:200px; height:auto; display:block; margin:0 auto 20px;">
                 <h2>Connecting You to Korea, Always.</h2>
                 <p>Discover the beauty of Korean culture through innovative tools and insights. We regularly update our programs to bring you closer to Korea.</p>
-                <p>Latest Update: 2026.01.18</p>
+                <p>Latest Update: 2026.01.19</p>
             </section>
         </div>
 
@@ -234,6 +235,20 @@
                 </div>
             </section>
         </div>
+
+        <div id="history-content" style="display:none;">
+            <section class="section">
+                <h2>Update History</h2>
+                <p>스크린샷으로 업데이트 기록을 확인하세요.</p>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>2026-01-18 Update</h3>
+                        <img src="images/2026-01-18 130616.png" alt="Update Screenshot" style="max-width:100%; height:auto; border-radius:5px;">
+                        <p>최근 업데이트 스크린샷</p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 
     <footer>
@@ -246,7 +261,9 @@
             document.getElementById('home-content').style.display = 'none';
             document.getElementById('downloads-content').style.display = 'none';
             document.getElementById('culture-content').style.display = 'none';
+            document.getElementById('history-content').style.display = 'none';
             document.getElementById('about-content').style.display = 'none';
+            
 
             // Remove active class from all nav links
             const navLinks = document.querySelectorAll('nav a');
