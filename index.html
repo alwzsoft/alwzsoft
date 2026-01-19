@@ -364,9 +364,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             return `
                 <div class="feature-card" data-category="${post.category}">
                     <h3>${post.title}</h3>
-                    <img src="${post.img}" alt="${post.title}" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
-                    <p>${post.desc.replace(/\n/g, '<br>')}</p>
                     <p class="post-date">${post.date}</p>
+                    <img src="${post.img}" alt="${post.title}" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
+                    <p>${post.desc.replace(/\n/g, '<br>')}</p>                    
                 </div>
             `;
         }
