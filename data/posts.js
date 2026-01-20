@@ -1,10 +1,31 @@
 const posts = [
   {
-    title: "회 Hoe (Raw Fish)",
-    img: "culture/hoe.jpg",
-    desc: `<strong>Fresh Live Fish, the Essence of Chewy Texture</strong><br><span class="blue">"Hwal-eo-hoe", "Chogochujang", "Ssam Culture", "Chewy vs Melting"</span><br>Unlike Japanese 'Sashimi' which often focuses on aged, melting textures, Korean 'Hoe' celebrates 'Hwal-eo' (live fish) for its firm and chewy bite. Enjoy it the Korean way: dipped in spicy chogochujang and wrapped in perilla leaves with garlic!`,
+    title: "치킨무 Chicken-mu",
+    img: "culture/chicken_mu.jpg",
+    desc: `<strong>Sweet & Sour Pickled Radish, the Ultimate Palate Cleanser</strong><br><span class="blue">"Crunchy Cubes", "Vinegar Brine", "Grease Cutter", "Korean Fried Chicken's Best Friend"</span><br>No Korean fried chicken experience is complete without these small, white, crunchy cubes of pickled radish. Served in a sweet and tangy vinegar brine, 'Chicken-mu' is specifically designed to cut through the oiliness of fried food, refreshing your taste buds between every bite.`,
     category: "food",
-    date: "1/18/2026"
+    date: "1/20/2026"
+  },
+  {
+    title: "케요네즈 샐러드 Keyonejeu Salad",
+    img: "culture/cabbage_salad.jpg",
+    desc: `<strong>Retro Cabbage Salad with a Ketchup-Mayo Twist</strong><br><span class="blue">"Shredded Cabbage", "Pink Sauce", "Old-school Vibe", "Classic Pairing"</span><br>A nostalgic staple in traditional Korean chicken houses, this simple salad features finely shredded cabbage topped with a 'Keyonejeu' (Ketchup + Mayonnaise) sauce. While simple, its creamy and tangy flavor provides a perfect crisp contrast to the crunchy chicken skin, bringing back 'old-school' memories for many Koreans.`,
+    category: "food",
+    date: "1/20/2026"
+  },
+  {
+    title: "치맥 Chimaek",
+    img: "culture/chimaek.jpg",
+    desc: `<strong>Chicken and Beer: Korea's Iconic Social Pairing</strong><br><span class="blue">"Chicken + Maekju", "Han River Picnic", "Sports Night Essential", "Oxford Dictionary Entry"</span><br>A portmanteau of 'Chicken' and 'Maekju' (beer), Chimaek is more than just a meal—it's a cultural phenomenon. Whether it's a picnic by the Han River, a gathering to watch a soccer match, or a late-night office dinner, Chimaek symbolizes joyful social bonding. This pairing has become so globally famous that it was even officially added to the Oxford English Dictionary!`,
+    category: "food",
+    date: "1/20/2026"
+  },
+  {
+    title: "맥주 Maek-ju",
+    img: "culture/beer.jpg",
+    desc: `<strong>Beer. Light, Fizzy, and Extra Cold: The Perfect Chimaek Partner</strong><br><span class="blue">"Lager Style", "Crisp Carbonation", "Somaek Culture", "The Colder the Better"</span><br>Korean lagers are famous for their light body and high carbonation, making them incredibly refreshing. While some connoisseurs call them "watery," this clean finish is actually a strategic advantage—it cleanses the palate after oily chicken bites without overpowering the flavor. Best served in a chilled glass, it's the 'fizz' that completes the Chimaek experience!`,
+    category: "food",
+    date: "1/20/2026"
   },
   {
     title: "최강록 Choi Kang-rok",
