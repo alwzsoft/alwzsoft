@@ -109,47 +109,52 @@
         // 1. 포스트 카드 생성 (HTML 구조 유지)
         function renderPosts() {
             const container = document.getElementById('post-container');
-            if (typeof posts === 'undefined') {
-                container.innerHTML = "<p>No posts found.</p>";
-                return;
-            }
+            if (typeof posts === 'undefined' || !posts) return;
 
-            container.innerHTML = posts.map((post, index) => `
-                <div class="feature-card" data-category="${post.category}">
-                    <p class="post-date">${post.date}</p>
-                    <h3>${post.title}</h3>
-                    <img src="${post.img}" alt="${post.title}">
-                    <p style="text-align:left; font-size:0.95em; line-height:1.6;">${post.desc}</p>
-                    ${post.quiz ? `<button class="quiz-btn" onclick="openQuiz(${index})"><i class="fas fa-lightbulb"></i> Start Quiz!</button>` : ''}
-                </div>
-            `).join('');
+            container.innerHTML = posts.map((post, index) => {
+                // 퀴즈 데이터가 있는지 확인
+                const hasQuiz = post.quiz && post.quiz.question;
+                
+                return `
+                    <div class="feature-card" data-category="${post.category}">
+                        <p class="post-date">${post.date}</p>
+                        <h3>${post.title}</h3>
+                        <img src="${post.img}" alt="${post.title}" onerror="this.src='images/logo.jpg'">
+                        <div class="post-desc" style="text-align:left; font-size:0.95em; line-height:1.6; margin-bottom:15px;">
+                            ${post.desc} 
+                        </div>
+                        ${hasQuiz ? `<button class="quiz-btn" onclick="openQuiz(${index})"><i class="fas fa-lightbulb"></i> Start Quiz!</button>` : ''}
+                    </div>
+                `;
+            }).join('');
         }
 
-        // 2. 퀴즈 기능
+        // 2. 퀴즈 열기 (데이터 접근 방식 최적화)
         function openQuiz(index) {
-            const quiz = posts[index].quiz;
-            if (!quiz) return;
+            const post = posts[index];
+            if (!post || !post.quiz) return;
 
+            const quiz = post.quiz;
             document.getElementById('quiz-question').innerText = quiz.question;
+            
             const optionsContainer = document.getElementById('quiz-options');
             optionsContainer.innerHTML = quiz.options.map(opt => `
-                <button class="opt-btn" onclick="checkAnswer('${opt}', '${quiz.answer}')">${opt}</button>
+                <button class="opt-btn" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${quiz.answer.replace(/'/g, "\\Source")}')">${opt}</button>
             `).join('');
 
             document.getElementById('quizModal').style.display = 'block';
         }
 
-        function checkAnswer(selected, correct) {
+        // 3. 정답 체크 (선택한 값과 정답 비교)
+        function checkAnswer(btnElement, selected, correct) {
             if (selected === correct) {
                 alert("🎉 Correct! You're a K-expert!");
                 closeQuiz();
             } else {
                 alert("❌ Try again!");
+                btnElement.style.backgroundColor = "#ff7675"; // 틀렸을 때 버튼 색 변경
+                btnElement.style.color = "white";
             }
-        }
-
-        function closeQuiz() {
-            document.getElementById('quizModal').style.display = 'none';
         }
 
         // 3. 섹션 전환
