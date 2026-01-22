@@ -11,169 +11,216 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alwzsoft | Explore K-Culture & Posts</title>
+    <title>Alwzsoft | Discover K-Culture</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; min-height: 100vh; }
+        :root { --primary: #667eea; --secondary: #764ba2; --accent: #FFD700; --danger: #ff4757; --success: #2ed573; }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: #333; min-height: 100vh; }
+        
+        /* Header & Nav */
         header { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-        header h1 { margin: 0; color: white; font-size: 2em; cursor: pointer; }
-        nav { background: rgba(255, 255, 255, 0.1); padding: 10px 0; text-align: center; }
-        nav a { color: white; margin: 0 20px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        nav a:hover, nav a.active { color: #FFD700; }
+        header h1 { margin: 0; color: white; font-size: 1.8em; cursor: pointer; letter-spacing: 2px; }
+        nav { background: rgba(0, 0, 0, 0.1); padding: 12px 0; text-align: center; position: sticky; top: 0; z-index: 100; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; transition: 0.3s; opacity: 0.8; }
+        nav a:hover, nav a.active { color: var(--accent); opacity: 1; border-bottom: 2px solid var(--accent); }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        .section { background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .section { background: rgba(255, 255, 255, 0.95); padding: 35px; border-radius: 20px; margin: 20px 0; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
         
-        .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
-        .feature-card { width: 320px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; transition: 0.3s; }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+        /* Post Card Styles */
+        .features { display: flex; flex-wrap: wrap; gap: 25px; justify-content: center; }
+        .feature-card { width: 300px; background: white; padding: 15px; border-radius: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-8px); }
+        .feature-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
+        .post-date { font-size: 12px; color: #aaa; margin: 10px 0 5px; }
+        .blue { color: var(--primary); font-weight: bold; }
         
-        .post-date { font-size: 12px; color: #999; margin-bottom: 5px; }
-        .blue { color: #667eea; font-weight: bold; font-size: 0.9em; }
-        
-        /* 퀴즈 버튼 스타일 보강 */
-        .quiz-btn { background: #ff4757; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: auto; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px; }
-        .quiz-btn:hover { background: #e84118; transform: scale(1.02); }
+        /* Quiz System Styles */
+        #quiz-game-screen { max-width: 500px; margin: 0 auto; }
+        #quiz-target-img { width: 100%; height: 280px; object-fit: cover; border-radius: 20px; border: 6px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
+        .opt-btn { padding: 15px; border: 2px solid var(--primary); border-radius: 12px; background: white; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .opt-btn:hover { background: #f0f4ff; }
+        .start-btn { background: var(--danger); color: white; border: none; padding: 18px 50px; border-radius: 30px; font-size: 1.2em; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3); }
+        .start-btn:hover { transform: scale(1.05); background: #e84118; }
 
-        /* 모달 시스템 보강 */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
-        .modal-content { background: white; width: 90%; max-width: 450px; margin: 10% auto; padding: 40px 30px; border-radius: 25px; text-align: center; position: relative; animation: slideDown 0.4s ease; }
-        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        .close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
-        .quiz-options { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
-        .opt-btn { padding: 15px; border: 2px solid #667eea; border-radius: 12px; background: white; cursor: pointer; font-weight: bold; font-size: 1em; transition: 0.2s; }
-        .opt-btn:hover { background: #f0f2ff; border-color: #764ba2; }
-        
-        .filter-btn { padding: 8px 20px; margin: 0 5px 10px; border: none; background: #eee; color: #666; cursor: pointer; border-radius: 20px; transition: 0.3s; font-weight: bold; }
-        .filter-btn.active { background: #ffd700; color: #333; }
-        
-        .donation-btn { background: #FFD700; color: black; padding: 8px 15px; text-decoration: none; border-radius: 20px; font-weight: bold; }
+        /* Common Elements */
+        .filter-btn { padding: 8px 18px; margin: 0 5px 10px; border: none; background: #eee; border-radius: 20px; cursor: pointer; transition: 0.3s; font-weight: bold; }
+        .filter-btn.active { background: var(--accent); }
+        .donation-btn { background: var(--accent); color: black; padding: 8px 18px; text-decoration: none; border-radius: 20px; font-weight: bold; font-size: 0.9em; }
     </style>
 </head>
 <body>
+
     <header>
         <h1 onclick="showSection('home')">ALWZSOFT</h1>
-        <a href="https://buymeacoffee.com/alwzsoft" class="donation-btn" target="_blank">☕ Donate</a>
+        <a href="https://buymeacoffee.com/alwzsoft" class="donation-btn" target="_blank">☕ Support Us</a>
     </header>
 
     <nav>
         <a href="#home" onclick="showSection('home')">Home</a>
-        <a href="#post" onclick="showSection('post')">Post & Quiz</a>
+        <a href="#post" onclick="showSection('post')">Culture Posts</a>
+        <a href="#quiz" onclick="showSection('quiz')">Challenge Quiz</a>
         <a href="#about" onclick="showSection('about')">About</a>
     </nav>
 
     <div class="container">
         <div id="home-content">
             <section class="section" style="text-align: center;">
-                <img src="images/logo.jpg" alt="Logo" style="max-width:150px; border-radius: 50%;">
-                <h2>Connecting You to Korea, Always.</h2>
-                <p>Explore K-Culture, lifestyle, and join our interactive quizzes!</p>
+                <img src="images/logo.jpg" alt="Logo" style="max-width:140px; border-radius: 50%; border: 4px solid var(--primary);">
+                <h2 style="font-size: 2em; color: var(--secondary);">Experience Korea, Everyday.</h2>
+                <p style="font-size: 1.1em; color: #666;">Learn about Korean lifestyle and test your knowledge!</p>
+                <div style="margin-top: 30px;">
+                    <button class="start-btn" onclick="showSection('post')" style="background: var(--primary); margin-right: 10px;">Read Posts</button>
+                    <button class="start-btn" onclick="showSection('quiz')">Go to Quiz</button>
+                </div>
             </section>
         </div>
 
         <div id="post-content" style="display:none;">
             <section class="section">
-                <h2>K-Pulse Posts</h2>
-                <div class="filter-buttons" style="text-align:center; margin-bottom: 20px;">
-                    <button class="filter-btn active" data-filter="all">All</button>
+                <h2 style="text-align: center; color: var(--secondary);"><i class="fas fa-bookmark"></i> K-Pulse Archive</h2>
+                <div id="filter-container" style="text-align:center; margin-bottom: 25px;">
+                    <button class="filter-btn active" data-filter="all">All Items</button>
                     <button class="filter-btn" data-filter="food">Food</button>
                     <button class="filter-btn" data-filter="culture">Culture</button>
-                    <button class="filter-btn" data-filter="shopping">Shopping</button>
+                    <button class="filter-btn" data-filter="travel">Travel</button>
                 </div>
                 <div class="features" id="post-container"></div>
+            </section>
+        </div>
+
+        <div id="quiz-content" style="display:none;">
+            <section class="section" style="text-align: center;">
+                <div id="quiz-start-screen">
+                    <div style="font-size: 4em; margin-bottom: 20px;">🎮</div>
+                    <h2 style="color: var(--secondary);">K-Photo Master Quiz</h2>
+                    <p>Can you identify the Korean culture from the photo?<br>The more you read our posts, the easier it gets!</p>
+                    <button class="start-btn" onclick="startNewQuiz()">START CHALLENGE</button>
+                </div>
+
+                <div id="quiz-game-screen" style="display: none;">
+                    <div id="quiz-image-wrapper">
+                        <img id="quiz-target-img" src="" alt="What is this?">
+                    </div>
+                    <h3 id="quiz-instruction" style="margin-top: 25px;">What is the name of this?</h3>
+                    <div id="quiz-answer-options" class="quiz-options"></div>
+                    <p id="quiz-feedback" style="margin-top: 25px; font-weight: bold; font-size: 1.2em; height: 30px;"></p>
+                </div>
             </section>
         </div>
 
         <div id="about-content" style="display:none;">
             <section class="section">
                 <h2>About ALWZSOFT</h2>
-                <p>We share the most authentic Korean experiences with the world.</p>
+                <p>We are dedicated to sharing the true essence of Korean culture, food, and history with the world.</p>
+                <p>Created with passion for all K-culture enthusiasts.</p>
             </section>
-        </div>
-    </div>
-
-    <div id="quizModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeQuiz()">&times;</span>
-            <div style="font-size: 3em; margin-bottom: 10px;">🤔</div>
-            <h2 id="quiz-question" style="margin-top:0;">Question?</h2>
-            <div id="quiz-options" class="quiz-options"></div>
         </div>
     </div>
 
     <script src="data/posts.js"></script>
     <script>
-        // 1. 포스트 카드 생성 (HTML 구조 유지)
+        let currentCorrectAnswer = "";
+
+        // 1. 포스트 렌더링 (메뉴와 본문 분리 버전)
         function renderPosts() {
             const container = document.getElementById('post-container');
             if (typeof posts === 'undefined' || !posts) return;
 
-            container.innerHTML = posts.map((post, index) => {
-                // 퀴즈 데이터가 있는지 확인
-                const hasQuiz = post.quiz && post.quiz.question;
-                
-                return `
-                    <div class="feature-card" data-category="${post.category}">
-                        <p class="post-date">${post.date}</p>
-                        <h3>${post.title}</h3>
-                        <img src="${post.img}" alt="${post.title}" onerror="this.src='images/logo.jpg'">
-                        <div class="post-desc" style="text-align:left; font-size:0.95em; line-height:1.6; margin-bottom:15px;">
-                            ${post.desc} 
-                        </div>
-                        ${hasQuiz ? `<button class="quiz-btn" onclick="openQuiz(${index})"><i class="fas fa-lightbulb"></i> Start Quiz!</button>` : ''}
+            container.innerHTML = posts.map(post => `
+                <div class="feature-card" data-category="${post.category}">
+                    <p class="post-date">${post.date}</p>
+                    <img src="${post.img}" alt="${post.title}" onerror="this.src='images/logo.jpg'">
+                    <h3 style="margin: 15px 0 10px; color: var(--secondary);">${post.title}</h3>
+                    <div style="text-align:left; font-size:0.92em; line-height:1.6; color:#444;">
+                        ${post.desc}
                     </div>
-                `;
-            }).join('');
-        }
-
-        // 2. 퀴즈 열기 (데이터 접근 방식 최적화)
-        function openQuiz(index) {
-            const post = posts[index];
-            if (!post || !post.quiz) return;
-
-            const quiz = post.quiz;
-            document.getElementById('quiz-question').innerText = quiz.question;
-            
-            const optionsContainer = document.getElementById('quiz-options');
-            optionsContainer.innerHTML = quiz.options.map(opt => `
-                <button class="opt-btn" onclick="checkAnswer(this, '${opt.replace(/'/g, "\\'")}', '${quiz.answer.replace(/'/g, "\\Source")}')">${opt}</button>
+                </div>
             `).join('');
-
-            document.getElementById('quizModal').style.display = 'block';
         }
 
-        // 3. 정답 체크 (선택한 값과 정답 비교)
-        function checkAnswer(btnElement, selected, correct) {
-            if (selected === correct) {
-                alert("🎉 Correct! You're a K-expert!");
-                closeQuiz();
+        // 2. 퀴즈 게임 로직
+        function startNewQuiz() {
+            if (typeof posts === 'undefined' || posts.length < 4) {
+                alert("Need more posts to start the quiz! (Min. 4)");
+                return;
+            }
+
+            document.getElementById('quiz-start-screen').style.display = 'none';
+            document.getElementById('quiz-game-screen').style.display = 'block';
+            document.getElementById('quiz-feedback').innerText = "";
+
+            // 문제 랜덤 선택
+            const correctPost = posts[Math.floor(Math.random() * posts.length)];
+            currentCorrectAnswer = correctPost.title;
+            document.getElementById('quiz-target-img').src = correctPost.img;
+
+            // 선택지 구성 (정답 1 + 오답 3)
+            let options = [correctPost.title];
+            let others = posts.filter(p => p.title !== correctPost.title)
+                              .sort(() => Math.random() - 0.5);
+            
+            for(let i=0; i<3; i++) {
+                options.push(others[i].title);
+            }
+
+            // 선택지 셔플
+            options.sort(() => Math.random() - 0.5);
+
+            const optionsContainer = document.getElementById('quiz-answer-options');
+            optionsContainer.innerHTML = options.map(opt => `
+                <button class="opt-btn" onclick="checkGameAnswer(this, '${opt.replace(/'/g, "\\'")}')">${opt}</button>
+            `).join('');
+        }
+
+        function checkGameAnswer(btn, selected) {
+            const feedback = document.getElementById('quiz-feedback');
+            const allBtns = document.querySelectorAll('.opt-btn');
+            
+            if (selected === currentCorrectAnswer) {
+                feedback.innerText = "🎊 Correct! You're a Genius!";
+                feedback.style.color = "var(--success)";
+                btn.style.background = "var(--success)";
+                btn.style.color = "white";
+                allBtns.forEach(b => b.disabled = true);
+                
+                setTimeout(startNewQuiz, 1500);
             } else {
-                alert("❌ Try again!");
-                btnElement.style.backgroundColor = "#ff7675"; // 틀렸을 때 버튼 색 변경
-                btnElement.style.color = "white";
+                feedback.innerText = "❌ Not that one. Try again!";
+                feedback.style.color = "var(--danger)";
+                btn.style.background = "var(--danger)";
+                btn.style.color = "white";
+                btn.disabled = true;
             }
         }
 
-        // 3. 섹션 전환
+        // 3. 섹션 전환 및 필터
         function showSection(id) {
-            ['home', 'post', 'about'].forEach(s => {
-                const content = document.getElementById(s + '-content');
-                if(content) content.style.display = 'none';
+            const sections = ['home', 'post', 'quiz', 'about'];
+            sections.forEach(s => {
+                const el = document.getElementById(s + '-content');
+                if (el) el.style.display = 'none';
             });
-            const target = document.getElementById(id + '-content');
-            if(target) target.style.display = 'block';
             
-            // 메뉴 활성화 상태 업데이트
+            const target = document.getElementById(id + '-content');
+            if (target) target.style.display = 'block';
+
+            // 네비게이션 강조
             document.querySelectorAll('nav a').forEach(a => {
                 a.classList.remove('active');
-                if(a.getAttribute('onclick').includes(`'${id}'`)) a.classList.add('active');
+                if(a.getAttribute('href') === '#' + id) a.classList.add('active');
             });
+
+            // 퀴즈 탭으로 올 때마다 시작화면으로 초기화
+            if(id === 'quiz') {
+                document.getElementById('quiz-start-screen').style.display = 'block';
+                document.getElementById('quiz-game-screen').style.display = 'none';
+            }
         }
 
-        // 필터 로직
+        // 카테고리 필터 이벤트
         document.addEventListener('click', e => {
             if (e.target.classList.contains('filter-btn')) {
                 const filter = e.target.dataset.filter;
@@ -181,29 +228,16 @@
                 e.target.classList.add('active');
 
                 document.querySelectorAll('.feature-card').forEach(card => {
-                    if (filter === 'all' || card.dataset.category === filter) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
+                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
                 });
             }
         });
 
         window.onload = () => {
             renderPosts();
-            const hash = window.location.hash.replace('#', '');
-            // 기존 주소(culture) 호환 처리
-            if(hash === 'culture' || hash === 'post') showSection('post');
-            else if(hash === 'about') showSection('about');
-            else showSection('home');
+            const hash = window.location.hash.replace('#', '') || 'home';
+            showSection(hash);
         };
-
-        // 모달 외부 클릭 시 닫기
-        window.onclick = function(event) {
-            const modal = document.getElementById('quizModal');
-            if (event.target == modal) closeQuiz();
-        }
     </script>
 </body>
 </html>
