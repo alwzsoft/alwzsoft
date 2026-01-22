@@ -123,7 +123,12 @@ const posts = [
     img: "culture/bungeoppang.jpg",
     desc: `<strong>Fish-shaped Pastry, the King of Winter Snacks</strong><br><span class="blue">"Sweet Red Bean", "Creamy Custard", "Winter Street Food", "Bungeo-se-kwon"</span><br>A nostalgic winter treat! These fish-shaped waffles are crispy on the outside and filled with warm sweetness. In Korea, we even have a term 'Bungeo-se-kwon' for areas lucky enough to have a street stall nearby.`,
     category: "food",
-    date: "1/18/2026"
+    date: "1/18/2026",
+    quiz: {
+      question: "What is the most traditional filling for Bungeoppang?",
+      options: ["Chocolate", "Red Bean Paste", "Cheese", "Meat"],
+      answer: "Red Bean Paste"
+    }
   },
   {
     title: "두바이 쫀득 쿠키 Du-jjon-ku",

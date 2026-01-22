@@ -1,535 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1YTMG8KPK"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-Q1YTMG8KPK');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Q1YTMG8KPK');
     </script>
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-P8GV5JKL');</script>
-    <!-- End Google Tag Manager -->
-     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alwzsoft | Explore Korean Culture, Food & Lifestyle</title>
-    <meta name="description" content="Discover everything about Korea! From street food like Bungeoppang to cultural tips on honorifics and the latest trends. Download our apps for real-time Korean market data and currency conversion.">
-    <meta name="keywords" content="Korea, Korean Food, K-Culture, Seoul Travel, Makgeolli, Pajeon, Korean Trends, Korean Apps, K-Pulse, Won-Calc, K-Time Hub">
+    <title>Alwzsoft | Explore K-Culture & Posts</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            min-height: 100vh;
-        }
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        header h1 {
-            margin: 0;
-            color: white;
-            font-size: 2.5em;
-            cursor: pointer;
-        }
-        .donation-btn {
-            background: #FFD700;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-        .donation-btn:hover {
-            background: #FFC107;
-        }
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: white;
-            margin: 0 20px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        nav a:hover, nav a.active, header h1.active {
-            color: #FFD700;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .section {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .section h2 {
-            color: #667eea;
-            font-size: 2em;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            margin: 10px;
-            transition: transform 0.3s ease;
-            font-weight: bold;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
-            justify-content: center;
-        }
-        .feature-card {
-            width: 300px;
-            flex-shrink: 0;
-        }
-        .feature-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-        }
-        .feature-card h3 {
-            color: #667eea;
-        }
-        .blue {
-            color: #667eea;
-        }
-        .feature-card p {
-            line-height: 1.6;
-        }
-        .post-date {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 1px;
-            margin-top: -10px;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.9);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-        }
-        .filter-buttons {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .filter-btn {
-            padding: 8px 16px;
-            margin: 0 3px;
-            border: none;
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            font-size: 14px;
-        }
-        .filter-btn:hover {
-            background: #5a67d8;
-        }
-        .filter-btn.active {
-            background: #764ba2;
-        }
-        .feature-card {
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .feature-card.hidden {
-            opacity: 0;
-            transform: scale(0.8);
-        }
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; min-height: 100vh; }
+        header { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+        header h1 { margin: 0; color: white; font-size: 2em; cursor: pointer; }
+        nav { background: rgba(255, 255, 255, 0.1); padding: 10px 0; text-align: center; }
+        nav a { color: white; margin: 0 20px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        nav a:hover, nav a.active { color: #FFD700; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .section { background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
+        .feature-card { width: 320px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; transition: 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+        
+        .post-date { font-size: 12px; color: #999; margin-bottom: 5px; }
+        .blue { color: #667eea; font-weight: bold; font-size: 0.9em; }
+        
+        /* 퀴즈 버튼 스타일 보강 */
+        .quiz-btn { background: #ff4757; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-weight: bold; margin-top: auto; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .quiz-btn:hover { background: #e84118; transform: scale(1.02); }
 
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .features {
-                justify-content: center;
-            }
-            .filter-btn {
-                padding: 6px 12px;
-                margin: 0 2px;
-                font-size: 12px;
-            }
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            margin-top: 40px;
-        }
-
-        .page-share-icon {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
-            line-height: 35px;
-            text-align: center;
-            border-radius: 50%;
-            background: #f4f4f4;
-            color: #333;
-            font-size: 14px;
-            font-weight: bold;
-            text-decoration: none;
-            margin: 0 5px;
-            transition: 0.3s;
-        }
-        .page-share-icon:hover {
-            background: #333;
-            color: #fff;
-        }
+        /* 모달 시스템 보강 */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { background: white; width: 90%; max-width: 450px; margin: 10% auto; padding: 40px 30px; border-radius: 25px; text-align: center; position: relative; animation: slideDown 0.4s ease; }
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .close { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; color: #aaa; }
+        .quiz-options { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; }
+        .opt-btn { padding: 15px; border: 2px solid #667eea; border-radius: 12px; background: white; cursor: pointer; font-weight: bold; font-size: 1em; transition: 0.2s; }
+        .opt-btn:hover { background: #f0f2ff; border-color: #764ba2; }
+        
+        .filter-btn { padding: 8px 20px; margin: 0 5px 10px; border: none; background: #eee; color: #666; cursor: pointer; border-radius: 20px; transition: 0.3s; font-weight: bold; }
+        .filter-btn.active { background: #ffd700; color: #333; }
+        
+        .donation-btn { background: #FFD700; color: black; padding: 8px 15px; text-decoration: none; border-radius: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P8GV5JKL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
     <header>
         <h1 onclick="showSection('home')">ALWZSOFT</h1>
         <a href="https://buymeacoffee.com/alwzsoft" class="donation-btn" target="_blank">☕ Donate</a>
     </header>
 
     <nav>
-        <a href="#culture" onclick="showSection('culture')">Culture</a>
-        <a href="#downloads" onclick="showSection('downloads')">Downloads</a>
-        <a href="#picture" onclick="showSection('picture')">Picture</a>
+        <a href="#home" onclick="showSection('home')">Home</a>
+        <a href="#post" onclick="showSection('post')">Post & Quiz</a>
         <a href="#about" onclick="showSection('about')">About</a>
-            </nav>
+    </nav>
 
     <div class="container">
         <div id="home-content">
-            <section class="section">
-                <img src="images/logo.jpg" alt="ALWZSOFT Logo" style="max-width:200px; height:auto; display:block; margin:0 auto 20px;">
+            <section class="section" style="text-align: center;">
+                <img src="images/logo.jpg" alt="Logo" style="max-width:150px; border-radius: 50%;">
                 <h2>Connecting You to Korea, Always.</h2>
-                <p>Discover the beauty of Korean culture through innovative tools and insights. We regularly update our programs to bring you closer to Korea.</p>
+                <p>Explore K-Culture, lifestyle, and join our interactive quizzes!</p>
             </section>
         </div>
 
-        <div id="downloads-content" style="display:none;">
+        <div id="post-content" style="display:none;">
             <section class="section">
-                <h2>Downloads</h2>
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
-                    <a href="#" onclick="sharePageToX(event, 'downloads')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" onclick="sharePageToFacebook(event, 'downloads')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" onclick="sharePageToWhatsApp(event, 'downloads')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" onclick="copyPageLink(event, 'downloads')" class="page-share-icon"><i class="fas fa-link"></i></a>
-                </div>
-                <div class="features">
-                </div>
-            </section>
-        </div>
-
-        <div id="culture-content">
-            <section class="section">
-                <h2>Korean Culture</h2>
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
-                    <a href="#" onclick="sharePageToX(event, 'culture')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" onclick="sharePageToFacebook(event, 'culture')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" onclick="sharePageToWhatsApp(event, 'culture')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" onclick="copyPageLink(event, 'culture')" class="page-share-icon"><i class="fas fa-link"></i></a>
-                </div>
-                <p>Discover the rich culture of Korea through its traditions, food, and modern influences.</p>
-                <div class="filter-buttons">
+                <h2>K-Pulse Posts</h2>
+                <div class="filter-buttons" style="text-align:center; margin-bottom: 20px;">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="food">Food</button>
-                    <button class="filter-btn" data-filter="shopping">Shopping</button>
                     <button class="filter-btn" data-filter="culture">Culture</button>
+                    <button class="filter-btn" data-filter="shopping">Shopping</button>
                 </div>
-                
-                <div class="features">
-                </div>
+                <div class="features" id="post-container"></div>
             </section>
         </div>
-
-
 
         <div id="about-content" style="display:none;">
             <section class="section">
-                <h2>About Me</h2>
-                <p>Hello! I'm the creator of ALWZSOFT, passionate about developing useful tools and sharing knowledge about Korean culture.</p>
-                <div class="features">
-                    <div class="feature-card">
-                        <h3>Background</h3>
-                        <p>A software developer with a love for creating intuitive applications that make life easier.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Interests</h3>
-                        <p>Programming, Korean culture, finance, and helping others discover new technologies.</p>
-                    </div>
-                    <div class="feature-card">
-                        <h3>Mission</h3>
-                        <p>To build bridges between cultures through innovative software and educational content.</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div id="picture-content" style="display:none;">
-            <section class="section">
-                <h2>Picture Gallery</h2>
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <span style="font-size: 0.8em; color: #888; margin-right: 10px;">Share:</span>
-                    <a href="#" onclick="sharePageToX(event, 'picture')" class="page-share-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" onclick="sharePageToFacebook(event, 'picture')" class="page-share-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" onclick="sharePageToWhatsApp(event, 'picture')" class="page-share-icon"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" onclick="copyPageLink(event, 'picture')" class="page-share-icon"><i class="fas fa-link"></i></a>
-                </div>
-                <p>Explore beautiful pictures from Korea.</p>
-                <div class="features">
-                </div>
+                <h2>About ALWZSOFT</h2>
+                <p>We share the most authentic Korean experiences with the world.</p>
             </section>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 ALWZSOFT. All rights reserved.</p>
-    </footer>
-
-    <div id="imageModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage">
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeQuiz()">&times;</span>
+            <div style="font-size: 3em; margin-bottom: 10px;">🤔</div>
+            <h2 id="quiz-question" style="margin-top:0;">Question?</h2>
+            <div id="quiz-options" class="quiz-options"></div>
+        </div>
     </div>
 
     <script src="data/posts.js"></script>
-    <script src="data/downloads.js"></script>
-    <script src="data/pictures.js"></script>
     <script>
-        // 1. 포스트 HTML 생성 함수
-        function generatePostHTML(post) {
-            return `
+        // 1. 포스트 카드 생성 (HTML 구조 유지)
+        function renderPosts() {
+            const container = document.getElementById('post-container');
+            if (typeof posts === 'undefined') {
+                container.innerHTML = "<p>No posts found.</p>";
+                return;
+            }
+
+            container.innerHTML = posts.map((post, index) => `
                 <div class="feature-card" data-category="${post.category}">
                     <p class="post-date">${post.date}</p>
                     <h3>${post.title}</h3>
-                    <img src="${post.img}" alt="${post.title}" style="max-width:100%; height:100px; object-fit:cover; border-radius:5px; margin-bottom:10px; cursor:pointer;" onclick="openModal(this.src)">
-                    <p>${post.desc.replace(/\n/g, '<br>')}</p>
+                    <img src="${post.img}" alt="${post.title}">
+                    <p style="text-align:left; font-size:0.95em; line-height:1.6;">${post.desc}</p>
+                    ${post.quiz ? `<button class="quiz-btn" onclick="openQuiz(${index})"><i class="fas fa-lightbulb"></i> Start Quiz!</button>` : ''}
                 </div>
-            `;
+            `).join('');
         }
 
-        // 2. 다운로드 HTML 생성 함수
-        function generateDownloadHTML(download) {
-            const featuresHTML = download.features.map(feature => `<li>${feature}</li>`).join('');
-            return `
-                <div class="feature-card">
-                    <h3>${download.title}</h3>
-                    <p>${download.desc}</p>
-                    <a href="${download.href}" download class="btn">Download</a>
-                    <ul style="text-align: left;">
-                        ${featuresHTML}
-                    </ul>
-                </div>
-            `;
+        // 2. 퀴즈 기능
+        function openQuiz(index) {
+            const quiz = posts[index].quiz;
+            if (!quiz) return;
+
+            document.getElementById('quiz-question').innerText = quiz.question;
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = quiz.options.map(opt => `
+                <button class="opt-btn" onclick="checkAnswer('${opt}', '${quiz.answer}')">${opt}</button>
+            `).join('');
+
+            document.getElementById('quizModal').style.display = 'block';
         }
 
-        // 3. 데이터 로드 함수
-        function loadPosts() {
-            const container = document.querySelector('#culture-content .features');
-            if (typeof posts !== 'undefined') {
-                container.innerHTML = posts.map(generatePostHTML).join('');
+        function checkAnswer(selected, correct) {
+            if (selected === correct) {
+                alert("🎉 Correct! You're a K-expert!");
+                closeQuiz();
+            } else {
+                alert("❌ Try again!");
             }
         }
 
-        function loadDownloads() {
-            const container = document.querySelector('#downloads-content .features');
-            if (typeof downloads !== 'undefined') {
-                container.innerHTML = downloads.map(generateDownloadHTML).join('');
-            }
+        function closeQuiz() {
+            document.getElementById('quizModal').style.display = 'none';
         }
 
-        function loadPictures() {
-            const container = document.querySelector('#picture-content .features');
-            if (typeof pictures !== 'undefined') {
-                container.innerHTML = pictures.map(pic => `
-                    <div class="feature-card">
-                        <p class="post-date">${pic.date}</p>
-                        <img src="${pic.img}" alt="" style="max-width:100%; height:200px; object-fit:cover; border-radius:5px; cursor:pointer;" onclick="openModal(this.src)">
-                    </div>
-                `).join('');
-            }
+        // 3. 섹션 전환
+        function showSection(id) {
+            ['home', 'post', 'about'].forEach(s => {
+                const content = document.getElementById(s + '-content');
+                if(content) content.style.display = 'none';
+            });
+            const target = document.getElementById(id + '-content');
+            if(target) target.style.display = 'block';
+            
+            // 메뉴 활성화 상태 업데이트
+            document.querySelectorAll('nav a').forEach(a => {
+                a.classList.remove('active');
+                if(a.getAttribute('onclick').includes(`'${id}'`)) a.classList.add('active');
+            });
         }
 
-        // 4. 필터 및 자동 정렬 기능 (핵심 수정 부분)
-        function initializeFilters() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
+        // 필터 로직
+        document.addEventListener('click', e => {
+            if (e.target.classList.contains('filter-btn')) {
+                const filter = e.target.dataset.filter;
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
 
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.getAttribute('data-filter');
-                    // 버튼 클릭 시점에 생성된 카드들을 새로 조회합니다.
-                    const cards = document.querySelectorAll('#culture-content .feature-card');
-
-                    // 버튼 활성화 스타일 변경
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    cards.forEach(card => {
-                        const category = card.getAttribute('data-category');
-                        
-                        if (filter === 'all' || category === filter) {
-                            // 보여주기
-                            card.style.display = 'block';
-                            // 애니메이션 효과
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 10);
-                        } else {
-                            // 숨기기
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.8)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 400); // transition 시간과 맞춤
-                        }
-                    });
+                document.querySelectorAll('.feature-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
-            });
-        }
+            }
+        });
 
-        // 5. 섹션 전환 함수
-        function showSection(sectionId) {
-            const sections = ['home', 'downloads', 'culture', 'picture', 'about'];
-            sections.forEach(s => {
-                const el = document.getElementById(s + '-content');
-                if (el) el.style.display = 'none';
-            });
-
-            const target = document.getElementById(sectionId + '-content');
-            if (target) target.style.display = 'block';
-
-            // 네비게이션 활성화 표시
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('onclick')?.includes(sectionId)) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // 6. 초기 실행
-        window.onload = function() {
-            loadPosts();
-            loadDownloads();
-            loadPictures();
-            initializeFilters(); // 카드 생성 후 필터 초기화
-            showSection('home');
+        window.onload = () => {
+            renderPosts();
+            const hash = window.location.hash.replace('#', '');
+            // 기존 주소(culture) 호환 처리
+            if(hash === 'culture' || hash === 'post') showSection('post');
+            else if(hash === 'about') showSection('about');
+            else showSection('home');
         };
 
-        /* 모달 관련 함수들 */
-        var modal = document.getElementById('imageModal');
-        var modalImg = document.getElementById('modalImage');
-        var span = document.getElementsByClassName('close')[0];
-
-        function openModal(imgSrc) {
-            modal.style.display = "block";
-            modalImg.src = imgSrc;
-        }
-        span.onclick = function() { modal.style.display = "none"; }
-        modal.onclick = function(e) { if (e.target == modal) modal.style.display = "none"; }
-
-        /* 공유 함수들 생략 (기존 코드 유지) */
-
-
-
-
-
-        function sharePageToX(e, page) {
-            e.preventDefault();
-            const text = `Check out the ${page} page on Alwzsoft!`;
-            const url = window.location.href;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
-        }
-
-        function sharePageToFacebook(e, page) {
-            e.preventDefault();
-            const url = window.location.href;
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
-        }
-
-        function sharePageToWhatsApp(e, page) {
-            e.preventDefault();
-            const text = `Check out the ${page} page on Alwzsoft: ${window.location.href}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        function copyPageLink(e, page) {
-            e.preventDefault();
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                alert("Link copied! Share it on Instagram or anywhere else.");
-            });
+        // 모달 외부 클릭 시 닫기
+        window.onclick = function(event) {
+            const modal = document.getElementById('quizModal');
+            if (event.target == modal) closeQuiz();
         }
     </script>
 </body>
