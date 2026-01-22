@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* [기존 스타일 그대로 복구] */
         body { font-family: 'Noto Sans KR', sans-serif; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #333; min-height: 100vh; }
         header { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
         header h1 { margin: 0; color: white; font-size: 2em; cursor: pointer; }
@@ -26,24 +25,27 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         .section { background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         
-        /* [포스팅 배열 원상복구] */
-        .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
-        .feature-card { width: 320px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative; display: flex; flex-direction: column; }
+        /* 1. 필터 스타일 (텍스트 형태 + 왼쪽 정렬) */
+        .filter-buttons { text-align: left; margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .filter-btn { background: none; border: none; color: #666; font-weight: bold; font-size: 1.1em; cursor: pointer; margin-right: 20px; padding: 5px 0; transition: 0.3s; }
+        .filter-btn.active { color: #667eea; border-bottom: 3px solid #667eea; }
+
+        /* 포스팅 카드 배열 */
+        .features { display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start; margin-top: 10px; }
+        .feature-card { width: 320px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
         .feature-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
         .post-date { font-size: 12px; color: #999; margin-bottom: 5px; }
         .blue { color: #667eea; font-weight: bold; }
-
-        /* [필터 디자인 원상복구] */
-        .filter-btn { padding: 8px 16px; margin: 0 5px; border: none; background: #667eea; color: white; cursor: pointer; border-radius: 20px; transition: 0.3s; }
-        .filter-btn.active { background: #ffd700; color: #333; }
         
-        /* [퀴즈 전용 스타일] */
-        .quiz-container { max-width: 500px; margin: 0 auto; text-align: center; }
-        .quiz-img-box { width: 100%; height: 180px; margin-bottom: 20px; }
-        .quiz-img-box img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
-        .opt-btn { padding: 12px; border: 2px solid #667eea; border-radius: 10px; background: white; cursor: pointer; font-weight: bold; transition: 0.2s; }
-        .opt-btn:hover { background: #f0f2ff; }
+        /* 3 & 4. 퀴즈 최적화 (사진 안짤림 + 2x2 배열) */
+        .quiz-container { max-width: 400px; margin: 0 auto; text-align: center; }
+        .quiz-img-box { width: 100%; height: 200px; background: #f8f9fa; border-radius: 10px; overflow: hidden; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+        .quiz-img-box img { width: 100%; height: 100%; object-fit: contain; } /* 사진이 카드 안에서 안짤리게 */
+        
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; } /* 2x2 배열 유지 */
+        .opt-btn { padding: 15px 5px; border: 1px solid #ddd; border-radius: 10px; background: white; cursor: pointer; font-weight: bold; font-size: 0.9em; transition: 0.2s; word-break: keep-all; }
+        .opt-btn:hover { background: #f0f2ff; border-color: #667eea; }
+        
         .donation-btn { background: #FFD700; color: black; padding: 8px 15px; text-decoration: none; border-radius: 20px; font-weight: bold; }
     </style>
 </head>
@@ -72,12 +74,11 @@
 
         <div id="post-content" style="display:none;">
             <section class="section">
-                <h2>K-Pulse Posts</h2>
-                <div class="filter-buttons" style="text-align:center; margin-bottom: 20px;">
+                <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="food">Food</button>
                     <button class="filter-btn" data-filter="culture">Culture</button>
-                    <button class="filter-btn" data-filter="travel">Travel</button>
+                    <button class="filter-btn" data-filter="food">Food</button>
+                    <button class="filter-btn" data-filter="shopping">Shopping</button>
                 </div>
                 <div class="features" id="post-container"></div>
             </section>
@@ -87,16 +88,16 @@
             <section class="section" style="text-align: center;">
                 <div id="quiz-start-screen">
                     <div style="font-size: 3em; margin-bottom: 10px;">🎮</div>
-                    <h2>K-Photo Challenge</h2>
-                    <p>Identify the correct name from the photo.<br>Each post appears once per session!</p>
-                    <button class="filter-btn" onclick="startNewQuiz()" style="padding: 15px 40px; font-size: 1.1em;">Start Quiz</button>
+                    <h2>Photo Master Quiz</h2>
+                    <p>Identify the correct name of the post.<br>No repeats until the session ends!</p>
+                    <button class="opt-btn" onclick="startNewQuiz()" style="padding: 15px 40px; margin-top: 20px; background: #667eea; color: white;">Start Quiz</button>
                 </div>
 
                 <div id="quiz-game-screen" style="display: none;" class="quiz-container">
                     <div class="quiz-img-box">
                         <img id="quiz-target-img" src="" alt="Quiz">
                     </div>
-                    <h3 style="color: #667eea;">What is the title of this post?</h3>
+                    <h3 style="color: #667eea;">What is this?</h3>
                     <div id="quiz-answer-options" class="quiz-options"></div>
                     <p id="quiz-feedback" style="margin-top: 20px; font-weight: bold; min-height: 24px;"></p>
                 </div>
@@ -106,7 +107,7 @@
         <div id="about-content" style="display:none;">
             <section class="section">
                 <h2>About ALWZSOFT</h2>
-                <p>We share the most authentic Korean experiences with the world.</p>
+                <p>Sharing the true taste and culture of Korea.</p>
             </section>
         </div>
     </div>
@@ -116,11 +117,9 @@
         let remainingPosts = [];
         let currentCorrectAnswer = "";
 
-        // 1. 포스트 렌더링 (원래대로)
         function renderPosts() {
             const container = document.getElementById('post-container');
             if (typeof posts === 'undefined') return;
-
             container.innerHTML = posts.map(post => `
                 <div class="feature-card" data-category="${post.category}">
                     <p class="post-date">${post.date}</p>
@@ -131,7 +130,6 @@
             `).join('');
         }
 
-        // 2. 퀴즈 로직 (중복 방지 반영)
         function startNewQuiz() {
             if (remainingPosts.length === 0) remainingPosts = [...posts];
             if (posts.length < 4) { alert("Need 4+ posts!"); return; }
@@ -168,7 +166,7 @@
                 btn.style.color = "white";
                 setTimeout(remainingPosts.length === 0 ? () => showSection('quiz') : startNewQuiz, 1200);
             } else {
-                feedback.innerText = "❌ Try again!";
+                feedback.innerText = "❌ Incorrect!";
                 feedback.style.color = "#ff4757";
                 btn.style.background = "#ff4757";
                 btn.style.color = "white";
@@ -176,18 +174,15 @@
             }
         }
 
-        // 3. 섹션 및 필터 (원래대로)
         function showSection(id) {
             ['home', 'post', 'quiz', 'about'].forEach(s => {
                 document.getElementById(s + '-content').style.display = 'none';
             });
             document.getElementById(id + '-content').style.display = 'block';
-            
             document.querySelectorAll('nav a').forEach(a => {
                 a.classList.remove('active');
                 if(a.getAttribute('href') === '#' + id) a.classList.add('active');
             });
-
             if(id === 'quiz') {
                 document.getElementById('quiz-start-screen').style.display = 'block';
                 document.getElementById('quiz-game-screen').style.display = 'none';
@@ -195,7 +190,6 @@
             }
         }
 
-        // 필터 동작 (원래대로)
         document.addEventListener('click', e => {
             if (e.target.classList.contains('filter-btn')) {
                 const filter = e.target.dataset.filter;
